@@ -2,7 +2,7 @@
 
 Partie sur la Récupération de l'information fourni par le capteur de couleur.
 
-Le capteur détecte les couleurs et renvoie un nombre pour chaque couleur primaire, c'est à dire red , bleu et vert.
+Le capteur détecte les couleurs et renvoie un nombre pour chaque couleur primaire, c'est à dire rouge , bleu et vert.
 
 
 
