@@ -18,10 +18,6 @@ Le capteur détecte les couleurs et renvoie un nombre pour chaque couleur primai
 
  
 
-Lien du projet sur github :
-
-https://github.com/charlesdesenclos/Projet-AP-robot
-
 Lien du capteur :
 
 https://www.gotronic.fr/art-capteur-de-couleur-grove-101020341-26487.htm
