@@ -12,7 +12,7 @@
 
 #define commonAnode true
 
-// our RGB -> eye-recognized gamma color
+//pour le RGB
 byte gammatable[256];
 
 
@@ -39,6 +39,8 @@ int detect_color(float red, float green, float blue)
       }
     }
 
+//bibliotèque
+
 Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X);
 
 void setup() {
@@ -47,13 +49,13 @@ void setup() {
 
     
 
-    // use these three pins to drive an LED
+    // utilisez ces trois broches pour piloter une LED
     pinMode(redpin, OUTPUT);
     pinMode(greenpin, OUTPUT);
     pinMode(bluepin, OUTPUT);
 
-    // thanks PhilB for this gamma table!
-    // it helps convert RGB colors to what humans see
+   
+    // il aide à convertir les couleurs RVB en ce que les humains voient
     for (int i = 0; i < 256; i++) {
         float x = i;
         x /= 255;
@@ -73,28 +75,23 @@ void setup() {
 void loop() {
     uint16_t clear, red, green, blue;
 
-    tcs.setInterrupt(false);      // turn on LED
+    tcs.setInterrupt(false);      // La LED éteinte quand c'est false
 
-    delay(60);  // takes 50ms to read
+    delay(60);  // prend 60 ms à lire
 
     tcs.getRawData(&red, &green, &blue, &clear); // variable clear obligatoire pour la fonction
 
-    tcs.setInterrupt(true);  // turn off LED
+    tcs.setInterrupt(true);  // La LED allumé quand c'est false
 
   
     Serial.print("\tR:\t"); Serial.print(red);
     Serial.print("\tG:\t"); Serial.print(green);
     Serial.print("\tB:\t"); Serial.print(blue);
 
-    // Figure out some basic hex code for visualization
-    uint32_t sum = clear;
-    float r, g, b;
-    r = red; r /= sum;
-    g = green; g /= sum;
-    b = blue; b /= sum;
-    r *= 256; g *= 256; b *= 256;
+    
+   
     Serial.print("\t");
-    //Serial.print((int)r, HEX); Serial.print((int)g, HEX); Serial.print((int)b, HEX); 
+   
     Serial.println();
 
     //Serial.print((int)r ); Serial.print(" "); Serial.print((int)g);Serial.print(" ");  Serial.println((int)b );
@@ -123,8 +120,4 @@ void loop() {
   
     
     
-
-    analogWrite(redpin, gammatable[(int)r]);
-    analogWrite(greenpin, gammatable[(int)g]);
-    analogWrite(bluepin, gammatable[(int)b]);
 }
