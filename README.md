@@ -11,4 +11,24 @@ Le capteur détecte les couleurs et renvoie un nombre pour chaque couleur primai
 
 
 - Ajout de la fonction detect_color pour la partie sur la stratégie de détection du sens de marche à partir d'un code couleur au sol.
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
  
+
+Lien du projet sur github : 
+https://github.com/charlesdesenclos/Projet-AP-robot
+
+Lien du capteur :
+
+https://www.gotronic.fr/art-capteur-de-couleur-grove-101020341-26487.htm
+
+Lien de la procédure pour l’installation de la bibliothèque :
+
+https://wiki.seeedstudio.com/Grove-I2C_Color_Sensor/
+
+Lien de la librairie :
+
+https://github.com/Seeed-Studio/Grove_I2C_Color_Sensor_TCS3472
