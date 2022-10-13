@@ -16,7 +16,10 @@
 byte gammatable[256];
 
 
-int detect_color(float red, float green, float blue){
+// la fonction detect_color est utilisé pour donner la couleur souhaité : bleu(1), blanc(2), rouge(3) sinon la fonction renvoie 0
+
+int detect_color(float red, float green, float blue)
+{
       // detection couleur
       if (red > 70 && green < 70 && blue < 70) {
         
