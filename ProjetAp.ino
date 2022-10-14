@@ -1,10 +1,10 @@
 #include <Wire.h>
-#include "Adafruit_TCS34725.h"
+#include "Adafruit_TCS34725.h" //inclusion de la bibliothèque
 
 //branché le capteur sur le port IC2 
 
 
-
+//règlage des pins 
 
 #define redpin 3
 #define greenpin 5
@@ -15,8 +15,10 @@
 //pour le RGB
 byte gammatable[256];
 
+/*------------------------------------------------------------------------------*/
 
 // la fonction detect_color est utilisé pour donner la couleur souhaité : bleu(1), blanc(2), rouge(3) sinon la fonction renvoie 0
+//fonction pour Groupe-5: Stratégie de détection du sens de marche à partir d'un code couleur au sol
 
 int detect_color(float red, float green, float blue)
 {
@@ -37,9 +39,15 @@ int detect_color(float red, float green, float blue)
       {
         return 0;
       }
-    }
+}
 
-//bibliotèque
+
+/*------------------------------------------------------------------------------*/
+
+
+ 
+
+//appelle de la bibliotèque
 
 Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X);
 
@@ -49,7 +57,7 @@ void setup() {
 
     
 
-    // utilisez ces trois broches pour piloter une LED
+    // utilisez ces trois broches pour piloter une LED, mis en sortie
     pinMode(redpin, OUTPUT);
     pinMode(greenpin, OUTPUT);
     pinMode(bluepin, OUTPUT);
@@ -67,13 +75,13 @@ void setup() {
         } else {
             gammatable[i] = x;
         }
-        //Serial.println(gammatable[i]);
+        //Serial.println(gammatable[i]); // pour voir la valeur  si problème
     }
 }
 
 
 void loop() {
-    uint16_t clear, red, green, blue;
+    uint16_t clear, red, green, blue; // déclaration des variables pour les couleurs
 
     tcs.setInterrupt(false);      // La LED éteinte quand c'est false
 
@@ -83,7 +91,9 @@ void loop() {
 
     tcs.setInterrupt(true);  // La LED allumé quand c'est false
 
-  
+
+    // Affichage des valeurs des couleurs pour rouge, vert et bleue
+      
     Serial.print("\tR:\t"); Serial.print(red);
     Serial.print("\tG:\t"); Serial.print(green);
     Serial.print("\tB:\t"); Serial.print(blue);
@@ -94,10 +104,18 @@ void loop() {
    
     Serial.println();
 
-    //Serial.print((int)r ); Serial.print(" "); Serial.print((int)g);Serial.print(" ");  Serial.println((int)b );
+    
 
-    int detect = detect_color(red, green, blue);
 
+/*------------------------------------------------------------------------------*/
+
+//appelle de la fonction pour Groupe-5: Stratégie de détection du sens de marche à partir d'un code couleur au sol
+
+
+    int detect = detect_color(red, green, blue); //appele de la fonction
+
+
+   // gére ce que renvoie la fonction
     if (detect == 1)
     {
       Serial.print("BLEU");
@@ -116,6 +134,9 @@ void loop() {
     }
 
     //Serial.print(detect); //test voir la valeur de la fonction detect_color si il y a un bug
+
+
+/*------------------------------------------------------------------------------*/
 
   
     
